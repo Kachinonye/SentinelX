@@ -1,24 +1,27 @@
 # 🛡️ SentinelX — Adaptive Linux Intrusion Detection & Automated Response Framework
 
-**SentinelX** is an advanced Bash-based Linux security monitoring and intrusion response framework designed to detect suspicious activity, monitor system health, analyze network behavior, and automatically respond to potential threats.
+**SentinelX** is an advanced Bash-based Linux intrusion detection and automated response framework that continuously monitors system activity, detects suspicious behavior, and automatically responds to potential security threats.
 
-Built as a comprehensive Linux administration and cybersecurity project, SentinelX combines intrusion detection, process monitoring, network inspection, firewall automation, logging, and configurable response mechanisms into a single security platform.
+Designed as a comprehensive Linux administration and cybersecurity project, SentinelX combines process monitoring, authentication log analysis, network inspection, firewall automation, configuration management, and adaptive response into a single security platform.
 
 ---
 
 ## ✨ Features
 
-- 🛡️ SSH authentication monitoring
-- 🔐 Detects repeated login failures and suspicious `sudo` activity
-- 👀 Monitors suspicious processes and abnormal CPU or memory usage
-- 🌐 Watches network connections and blacklisted IP addresses
-- 🚫 Automatically blocks malicious IPs
+- 🔐 Monitors SSH authentication logs for brute-force attacks
+- 🚨 Detects suspicious `sudo` activity
+- 👀 Identifies abnormal CPU and memory usage
+- ⚙️ Detects processes running from suspicious locations
+- 🌐 Monitors active network connections
+- 🚫 Detects connections to blacklisted IP addresses
+- 🔍 Flags unusual listening ports
+- 🛡️ Automatically blocks malicious IP addresses
 - ⚡ Terminates suspicious processes
 - 📧 Optional administrator notifications
-- ⚙️ Fully configurable through `/etc/sentinelx.conf`
+- ⚙️ Configurable through `/etc/sentinelx.conf`
 - 🧪 Safe **DRY_RUN** mode for testing
-- 📝 Centralized logging
-- 🔒 Supports `iptables`, `nftables`, and `UFW`
+- 📝 Centralized logging and blocked IP persistence
+- 🔒 Supports **iptables**, **nftables**, and **UFW**
 - 🚦 Prevents multiple instances using `flock` or PID locking
 - 🐧 Compatible with modern Linux distributions
 
@@ -31,6 +34,7 @@ SentinelX/
 ├── sentinelx.sh
 ├── sentinelx.conf
 ├── logs/
+├── reports/
 └── README.md
 ```
 
@@ -44,11 +48,22 @@ Clone the repository:
 git clone https://github.com/Kachinonye/sentinelx.git
 ```
 
-Install the script:
+Navigate into the project:
+
+```bash
+cd sentinelx
+```
+
+Make the script executable:
+
+```bash
+chmod +x sentinelx.sh
+```
+
+Copy the script:
 
 ```bash
 sudo cp sentinelx.sh /usr/local/bin/
-sudo chmod +x /usr/local/bin/sentinelx.sh
 ```
 
 Create the configuration file:
@@ -57,25 +72,62 @@ Create the configuration file:
 sudo nano /etc/sentinelx.conf
 ```
 
+Example configuration:
+
+```bash
+INTERVAL=60
+CPU_THRESHOLD=70
+MEM_THRESHOLD=70
+DRY_RUN=true
+USE_UFW=false
+MAIL_TO="admin@example.com"
+```
+
+Create required directories:
+
+```bash
+sudo mkdir -p /var/log/sentinelx
+sudo touch /var/log/sentinelx/sentinelx.log
+sudo touch /etc/sentinelx.blocked_ips
+```
+
+---
+
+## ▶️ Usage
+
 Run SentinelX:
+
+```bash
+sudo ./sentinelx.sh
+```
+
+or
 
 ```bash
 sudo sentinelx.sh
 ```
 
+SentinelX continuously monitors your Linux system and automatically responds to suspicious activity according to the configured policy.
+
 ---
 
 ## ⚙️ Configuration
 
-Configuration options include:
+SentinelX supports configurable settings including:
 
 - Monitoring interval
-- CPU threshold
-- Memory threshold
+- CPU usage threshold
+- Memory usage threshold
 - DRY_RUN mode
-- Firewall backend
-- Email alerts
-- Logging options
+- Firewall backend selection
+- Email notifications
+- Logging location
+
+All configuration is managed through:
+
+```text
+/etc/sentinelx.conf
+```
 
 ---
 
@@ -88,10 +140,10 @@ This project showcases practical experience with:
 - Linux Security
 - Intrusion Detection
 - Incident Response
-- Firewall Automation
 - Process Monitoring
 - Network Monitoring
 - SSH Security
+- Firewall Management
 - Configuration Management
 - Log Analysis
 - Automation
@@ -117,15 +169,33 @@ SentinelX is ideal for:
 
 Future releases may include:
 
-- Web dashboard
-- Threat intelligence feeds
-- Geo-IP blocking
+- Web-based monitoring dashboard
 - Email and Slack alerts
-- JSON logging
 - HTML security reports
-- Multi-server management
+- JSON logging
+- Threat intelligence integration
+- Geo-IP blocking
+- Multi-server monitoring
 - Plugin architecture
 - AI-assisted anomaly detection
+- REST API
+
+---
+
+## 🏆 Project Highlights
+
+SentinelX integrates several core Linux administration disciplines into a single solution:
+
+- Authentication monitoring
+- Process inspection
+- Network security
+- Firewall automation
+- Threat detection
+- Automated response
+- Configuration management
+- Audit logging
+
+It represents a practical demonstration of Linux administration, Bash automation, and security engineering skills.
 
 ---
 
