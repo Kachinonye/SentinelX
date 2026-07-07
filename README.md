@@ -1,55 +1,146 @@
-# SentinelX — Adaptive Linux Intrusion Response
+# 🛡️ SentinelX — Adaptive Linux Intrusion Detection & Automated Response Framework
 
-**Version:** 2025-10-14  
-**Author:** Kachinonye Nmezi  
-**Repo:** [https://github.com/Kachinonye/sentinelx](https://github.com/Kachinonye/sentinelx)
+**SentinelX** is an advanced Bash-based Linux security monitoring and intrusion response framework designed to detect suspicious activity, monitor system health, analyze network behavior, and automatically respond to potential threats.
 
----
-
-## Overview
-
-SentinelX is an **advanced Linux intrusion detection and response tool** designed to monitor critical system events, processes, and network connections. It provides adaptive responses to potential threats while supporting a **DRY_RUN mode** for safe testing. 
+Built as a comprehensive Linux administration and cybersecurity project, SentinelX combines intrusion detection, process monitoring, network inspection, firewall automation, logging, and configurable response mechanisms into a single security platform.
 
 ---
 
-## Features
+## ✨ Features
 
-- **Auth Log Monitoring:** Detects repeated SSH failures and suspicious sudo activity.
-- **Process Inspection:** Identifies high CPU/memory usage and processes running from suspicious paths.
-- **Network Watchdog:** Monitors connections to blacklisted IPs and unusual listening ports.
-- **Automated Response:** Blocks IPs, kills malicious processes, and optionally sends alerts to the administrator.
-- **Configurable & Safe:** Uses a configuration file `/etc/sentinelx.conf`. DRY_RUN mode allows testing without making changes.
-- **Logging & Persistence:** Maintains logs in `/var/log/sentinelx/` and persists blocked IPs in `/etc/sentinelx.blocked_ips`.
-- **Compatibility:** Works with iptables, nftables, and UFW. Detects available tools automatically.
-- **Single Instance Enforcement:** Ensures only one instance runs at a time using `flock` or PID locking.
+- 🛡️ SSH authentication monitoring
+- 🔐 Detects repeated login failures and suspicious `sudo` activity
+- 👀 Monitors suspicious processes and abnormal CPU or memory usage
+- 🌐 Watches network connections and blacklisted IP addresses
+- 🚫 Automatically blocks malicious IPs
+- ⚡ Terminates suspicious processes
+- 📧 Optional administrator notifications
+- ⚙️ Fully configurable through `/etc/sentinelx.conf`
+- 🧪 Safe **DRY_RUN** mode for testing
+- 📝 Centralized logging
+- 🔒 Supports `iptables`, `nftables`, and `UFW`
+- 🚦 Prevents multiple instances using `flock` or PID locking
+- 🐧 Compatible with modern Linux distributions
 
 ---
 
-## Installation
+## 📂 Project Structure
+
+```text
+SentinelX/
+├── sentinelx.sh
+├── sentinelx.conf
+├── logs/
+└── README.md
+```
+
+---
+
+## 🚀 Installation
+
+Clone the repository:
 
 ```bash
-# Create project directory (optional)
-mkdir -p ~/sentinelx && cd ~/sentinelx
+git clone https://github.com/Kachinonye/sentinelx.git
+```
 
-# Copy the script
-sudo cp sentinelx.sh /usr/local/bin/sentinelx.sh
+Install the script:
+
+```bash
+sudo cp sentinelx.sh /usr/local/bin/
 sudo chmod +x /usr/local/bin/sentinelx.sh
+```
 
-# Create configuration
+Create the configuration file:
+
+```bash
 sudo nano /etc/sentinelx.conf
+```
 
-# Example config:
-# INTERVAL=60
-# CPU_THRESHOLD=70
-# MEM_THRESHOLD=70
-# DRY_RUN=true
-# USE_UFW=false
-# MAIL_TO="your-email@example.com"
+Run SentinelX:
 
-# Ensure log directories and files exist
-sudo mkdir -p /var/log/sentinelx
-sudo touch /var/log/sentinelx/sentinelx.log
-sudo chmod 600 /var/log/sentinelx/sentinelx.log
-sudo touch /etc/sentinelx.blocked_ips
-sudo chmod 600 /etc/sentinelx.blocked_ips
+```bash
+sudo sentinelx.sh
+```
 
+---
+
+## ⚙️ Configuration
+
+Configuration options include:
+
+- Monitoring interval
+- CPU threshold
+- Memory threshold
+- DRY_RUN mode
+- Firewall backend
+- Email alerts
+- Logging options
+
+---
+
+## 💼 Skills Demonstrated
+
+This project showcases practical experience with:
+
+- Linux System Administration
+- Bash Shell Scripting
+- Linux Security
+- Intrusion Detection
+- Incident Response
+- Firewall Automation
+- Process Monitoring
+- Network Monitoring
+- SSH Security
+- Configuration Management
+- Log Analysis
+- Automation
+- Technical Documentation
+
+---
+
+## 🎯 Use Cases
+
+SentinelX is ideal for:
+
+- Linux System Administrators
+- DevOps Engineers
+- Cloud Engineers
+- Security Analysts
+- Home Lab Security
+- Server Hardening
+- Linux Administration Training
+
+---
+
+## 🔮 Planned Enhancements
+
+Future releases may include:
+
+- Web dashboard
+- Threat intelligence feeds
+- Geo-IP blocking
+- Email and Slack alerts
+- JSON logging
+- HTML security reports
+- Multi-server management
+- Plugin architecture
+- AI-assisted anomaly detection
+
+---
+
+## 👨‍💻 Author
+
+**Kachinonye Nmezi**
+
+Linux Administrator | Bash Automation Specialist | AWS Cloud Learner
+
+GitHub: https://github.com/Kachinonye
+
+LinkedIn: https://www.linkedin.com/in/kachinonye-nmezi-74170723b/
+
+---
+
+## 📜 License
+
+Licensed under the MIT License.
